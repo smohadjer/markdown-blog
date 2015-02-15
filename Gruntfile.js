@@ -6,22 +6,19 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		clean: {
-			dist: {
-				src: 'dist/'
-			}
-		},
+		clean: ['./dist/*', './include/*'],
 
 		markdown: {
 		  all: {
 			files: [{
 			  expand: true,
-			  src: './*.md',
-			  dest: 'include/',
+			  cwd: 'markdown',
+			  src: '*.md',
+			  dest: './include',
 			  ext: '.html'
 			}],
 			options: {
-				template: 'template.jst'
+				template: 'markdown/template.jst'
 			}
 		  }
 		},
