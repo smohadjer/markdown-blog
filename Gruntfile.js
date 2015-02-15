@@ -8,6 +8,7 @@ module.exports = function (grunt) {
 
 		clean: ['./dist', './include'],
 
+		//convert markdown files to html files
 		markdown: {
 		  all: {
 			files: [{
@@ -23,25 +24,34 @@ module.exports = function (grunt) {
 		  }
 		},
 
-		includes: {
-		  files: {
-			src: ['*.html'], // Source files
-			dest: 'dist/', // Destination directory
-			flatten: true,
-			cwd: 'site',
-			options: {
-				flatten: true,
-				includePath: 'include',
-				banner: '<!-- Site built using grunt includes! -->\n'
-
-			}
-		  }
+		//concat all html files into one html file
+		concat: {
+			dist: {
+				src: './include/*.html',
+				dest: './temp/posts.html'
+			},
 		},
+
+		includes: {
+			files: {
+				src: ['*.html'], // Source files
+				dest: 'dist/', // Destination directory
+				flatten: true,
+				cwd: 'site',
+				options: {
+					flatten: true,
+					debug: true,
+					includePath: 'temp',
+					banner: '<!-- Site built using grunt includes! -->\n'
+				}
+			}
+		}
 	});
 
 	grunt.registerTask('build', [
 		'clean',
 		'markdown:all',
+		'concat',
 		'includes'
 	]);
 };

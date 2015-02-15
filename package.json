@@ -6,6 +6,7 @@
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-check-dependencies": "~0.5.0",
+	"grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-markdown": "~0.7.0",
 	"grunt-includes": "~0.4.0",
